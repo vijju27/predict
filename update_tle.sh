@@ -4,16 +4,16 @@ let fetch_success=1
 declare -a satellites_list
 readarray satellites_list < list.txt
 
-#already files unnay vatini delete cheyali leda override cheyali. NOTE: override avvatle, wget tho concatinate avtunnay so removing ye option
+#Remove existing files. Note : wget is concatinating, so either remove files or make them empty.
 echo "Fetching updates"
 rm -f amateur.txt
 rm -f visual.txt
 rm -f weather.txt
 
-#if condition lo == pedithe correct output ratle
+# check if the last command executed succesfully with "$?"
 echo -n "Amateur "
 wget -qr www.celestrak.com/NORAD/elements/amateur.txt -O amateur.txt
-if [ $? -eq 0 ]; then 
+if [ $? -eq 0 ]; then
 	echo "OK"
 else
 	echo "FAIL"
@@ -23,7 +23,7 @@ fi
 
 echo -n "Visual "
 wget -qr www.celestrak.com/NORAD/elements/visual.txt -O visual.txt
-if [ $? -eq 0 ]; then 
+if [ $? -eq 0 ]; then
 	echo "OK"
 else
 	echo "FAIL"
@@ -33,7 +33,7 @@ fi
 
 echo -n "Weather "
 wget -qr www.celestrak.com/NORAD/elements/weather.txt -O weather.txt
-if [ $? -eq 0 ]; then 
+if [ $? -eq 0 ]; then
 	echo "OK"
 else
 	echo "FAIL"
@@ -51,11 +51,12 @@ else
 	echo "FETCH FAILED"
 fi
 
-#test.tle file ni delete chesi malli create cheyali
+
 rm -f test.tle
 touch test.tle
 
-#NORAD with U tho unna line 2 line la undi so okka line extra kavali so 1 add cheyali and last 3 lines ni extract cheyali prati NORAD ID ki
+
+#find middle line (it has satellite number with U). then parse the above line (has satellite name), and two tle lines.
 let temp=0
 for i in "${satellites_list[@]}"
 do
@@ -63,4 +64,3 @@ do
 	temp=$((temp+1))
 	head -n $temp all.tle | tail -n 3 >> test.tle
 done
-
