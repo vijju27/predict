@@ -6238,7 +6238,7 @@ char argc, *argv[];
 			{
 				if ((strlen(quickstring)+strlen(argv[z]))<37)
 				{
-					strncat(quickstring,argv[z],20); // changed old value 15 to 20. this allows satellite names with more characters
+					strncat(quickstring,argv[z],20); // changed old value 15 to 20. this allows satellite names with more characters. 20 is max length for satellite networks naming conventions.
 					strcat(quickstring,"\n");
 					z++;
 				}
@@ -6255,7 +6255,7 @@ char argc, *argv[];
 			{
 				if ((strlen(quickstring)+strlen(argv[z]))<37)
 				{
-					strncat(quickstring,argv[z],20);// changed old value 15 to 20. this allows satellite names with more characters
+					strncat(quickstring,argv[z],20);// changed old value 15 to 20. this allows satellite names with more characters. 20 is max length for satellite networks naming conventions.
 					strcat(quickstring,"\n");
 					z++;
 				}
@@ -6272,7 +6272,7 @@ char argc, *argv[];
 			{
 				if ((strlen(quickstring)+strlen(argv[z]))<37)
 				{
-					strncat(quickstring,argv[z],20);// changed old value 15 to 20. this allows satellite names with more characters
+					strncat(quickstring,argv[z],20);// changed old value 15 to 20. this allows satellite names with more characters. 20 is max length for satellite networks naming conventions.
 					strcat(quickstring,"\n");
 					z++;
 				}
